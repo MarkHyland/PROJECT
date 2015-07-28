@@ -14,11 +14,6 @@ class Alliedelec # Huge Reseller
 end
 
 
-# See about making a loop:
-
-# for i in 1..5
-# 	row(i) = d.xpath("//table[@id='tblParts']/tr")[i+2]
-# end
 
 
 

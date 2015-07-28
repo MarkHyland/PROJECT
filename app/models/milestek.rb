@@ -13,6 +13,13 @@ class Milestek # Manufacturer primarily
 	end
 end
 
+# site = Milestek.new
+# d = site.search "power cord".gsub(" ","+")
+
+# row = d.xpath("//table[@id='dlResultGrid']/tr[1]")
+# name = row.xpath("td[1]//b").text.strip
+
+# binding.pry
 
 
 # I tried some different things for price, but could not get
