@@ -36,11 +36,11 @@ price5 = row2.xpath("td[2]//strong")[1].text.delete("Price :")
 
 # They make you click for quantity. Varying string prefixes
 # so I can't implement it.
-quantity = "check site"
-quantity2 = "check site"
-quantity3 = "check site"
-quantity4 = "check site"
-quantity5 = "check site"
+quantity = "see sitehttp://www.milestek.com/"
+quantity2 = "see sitehttp://www.milestek.com/"
+quantity3 = "see sitehttp://www.milestek.com/"
+quantity4 = "see http://www.milestek.com/"
+quantity5 = "see http://www.milestek.com/"
 
 # Add "http://www.milestek.com/" + "" before
 image = row.xpath("td[1]//img")[0] 

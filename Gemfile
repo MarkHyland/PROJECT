@@ -15,6 +15,7 @@ gem 'pry-rails'
 gem 'devise'
 gem 'nokogiri'
 gem 'httparty'
+gem 'json'
 
 group :development, :test do
   gem 'byebug'

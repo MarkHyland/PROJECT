@@ -8,5 +8,4 @@ Rails.application.routes.draw do
   get "/milestek" => 'search#grab_milestek'
   get "/peerless" => 'search#grab_peerless'
 
-
 end
