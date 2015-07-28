@@ -1,8 +1,7 @@
 class SearchController < ApplicationController
-	def index
+	def index 
 	end
-
-	def grab_allie 
+	def grab
 		site = Alliedelec.new
 		d = site.search (params[:product]).gsub(" ","+")
 
@@ -62,12 +61,10 @@ class SearchController < ApplicationController
 		result4 = [name4,price4,quantity4]
 		result5 = [name5,price5,quantity5]
 
-		render json: [result, result2, result3, result4, result5]
-	end
-
-	def grab_cdw
+		a = [result, result2, result3, result4, result5]
+	
 		site = Cdw.new
-		d = site.search "power strip".gsub(" ","%20")
+		d = site.search (params[:product]).gsub(" ","%20")
 
 		name = d.xpath("//div[@class='searchrow-description']//a")[0].text
 		name2 = d.xpath("//div[@class='searchrow-description']//a")[1].text
@@ -101,12 +98,95 @@ class SearchController < ApplicationController
 		result4 = [name4, price4, quantity4]
 		result5 = [name5, price5, quantity5]
 
-		render json: [result, result2, result3, result4, result5]
-	end
+		b = [result, result2, result3, result4, result5]
 
-	def grab_milestek
-	end
-	
-	def grab_peerless
+		site = Milestek.new
+		d = site.search "power cord".gsub(" ","+")
+
+		# 3 column tables
+		row = d.xpath("//table[@id='dlResultGrid']/tr[1]")
+		row2 = d.xpath("//table[@id='dlResultGrid']/tr[2]")
+		row3 = d.xpath("//table[@id='dlResultGrid']/tr[3]")
+		 
+		name = row.xpath("td[1]//b").text.strip
+		name2 = row.xpath("td[2]//b").text.strip
+		name3 = row.xpath("td[3]//b").text.strip
+		name4 = row2.xpath("td[1]//b").text.strip
+		name5 = row2.xpath("td[2]//b").text.strip
+
+		price = row.xpath("td[1]//strong")[1].text.delete("Price :")
+		price2 = row.xpath("td[2]//strong")[1].text.delete("Price :")
+		price3 = row.xpath("td[3]//strong")[1].text.delete("Price :")
+		price4 = row2.xpath("td[1]//strong")[1].text.delete("Price :")
+		price5 = row2.xpath("td[2]//strong")[1].text.delete("Price :")
+
+		# They make you click for quantity. Varying string prefixes
+		# so I can't implement it.
+		quantity = "see sitehttp://www.milestek.com/"
+		quantity2 = "see sitehttp://www.milestek.com/"
+		quantity3 = "see sitehttp://www.milestek.com/"
+		quantity4 = "see http://www.milestek.com/"
+		quantity5 = "see http://www.milestek.com/"
+
+		# Add "http://www.milestek.com/" + "" before
+		image = row.xpath("td[1]//img")[0] 
+		image2 = row.xpath("td[2]//img")[0]
+		image3 = row.xpath("td[3]//img")[0]
+		image4 = row.xpath("td[1]//img")[0]
+		image5 = row.xpath("td[2]//img")[0]
+
+		result  = [name,  price,   quantity]
+		result2 = [name2, price2, quantity2]
+		result3 = [name3, price3, quantity3]
+		result4 = [name4, price4, quantity4]
+		result5 = [name5, price5, quantity5]
+
+		c = [result, result2, result3, result4, result5]
+
+		site = PeerlessElectronics.new
+		d = site.search "cord".gsub(" ","+")
+
+		# Part number
+		name = d.xpath("//div[@class='ProductDetails']//a")[0].text
+		name2 = d.xpath("//div[@class='ProductDetails']//a")[1].text
+		name3 = d.xpath("//div[@class='ProductDetails']//a")[2].text
+		name4 = d.xpath("//div[@class='ProductDetails']//a")[3].text
+		name5 = d.xpath("//div[@class='ProductDetails']//a")[4].text
+
+		price = d.xpath("//span[@class='ProductPrice']")[0].text
+		price2 = d.xpath("//span[@class='ProductPrice']")[1].text
+		price3 = d.xpath("//span[@class='ProductPrice']")[2].text
+		price4 = d.xpath("//span[@class='ProductPrice']")[3].text
+		price5 = d.xpath("//span[@class='ProductPrice']")[4].text
+
+		# They make you click for quantity -- requires extra method.
+		# q will not be used. It works similarly to row".
+		q = site.search_quantity name.gsub("-","%252d")
+		q2 = site.search_quantity name2.gsub("-","%252d")
+		q3 = site.search_quantity name3.gsub("-","%252d")
+		q4 = site.search_quantity name4.gsub("-","%252d")
+		q5 = site.search_quantity name5.gsub("-","%252d")
+
+		quantity = q.xpath("//span[@class='VariationProductInventory']").text.strip
+		quantity2 = q2.xpath("//span[@class='VariationProductInventory']").text.strip
+		quantity3 = q3.xpath("//span[@class='VariationProductInventory']").text.strip
+		quantity4 = q4.xpath("//span[@class='VariationProductInventory']").text.strip
+		quantity5 = q5.xpath("//span[@class='VariationProductInventory']").text.strip
+
+		image = d.xpath("//div[@class='ProductImage']")[0]
+		image2 = d.xpath("//div[@class='ProductImage']")[1]
+		image3 = d.xpath("//div[@class='ProductImage']")[2]
+		image4 = d.xpath("//div[@class='ProductImage']")[3]
+		image5 = d.xpath("//div[@class='ProductImage']")[4]
+
+		result  = [name,  price,   quantity]
+		result2 = [name2, price2, quantity2]
+		result3 = [name3, price3, quantity3]
+		result4 = [name4, price4, quantity4]
+		result5 = [name5, price5, quantity5]
+
+		d = [result, result2, result3, result4, result5]
+
+		render json: a + b + c + d
 	end
 end

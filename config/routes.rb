@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   
   root to: 'search#index'
 
-  get "/allie"    => 'search#grab_allie'
-  get "/cdw"      => 'search#grab_cdw' 
-  get "/milestek" => 'search#grab_milestek'
-  get "/peerless" => 'search#grab_peerless'
+  get "/answer"    => 'search#grab'
+  # get "/cdw"      => 'search#grab_cdw' 
+  # get "/milestek" => 'search#grab_milestek'
+  # get "/peerless" => 'search#grab_peerless'
 
 end

@@ -26,7 +26,7 @@ quantity = d.xpath("//div[@class='stock']//span[2]").text
 
 # No individual images
 
-binding.pry
+
 
 # I MAY SCRATCH THIS ONE
 # ----------------------
