@@ -4,23 +4,25 @@ require 'open-uri'
 require 'HTTParty'
 require 'json'
 
-class Cdw # Huge Reseller
+class CDW # Huge Reseller
 	include HTTParty
 	base_uri "http://www.cdw.com/shop/search/result.aspx?key="
 
-	def search product
-		resp = self.class.get "#{product}&wclsscat=&b=&p=&ctlgfilter=&searchscope=all&sr=1&pfm=gln"
-		Nokogiri::HTML resp.body
+	def self.search product
+		resp = self.get "#{product}&wclsscat=&b=&p=&ctlgfilter=&searchscope=all&sr=1&pfm=gln"
+		d = Nokogiri::HTML resp.body
+
+		names = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-description']//a")[i].text}
+		prices = 0.upto(4).map {|i| d.xpath("//div[@class='ui-priceselector']//span[1]")[i].text}
+		quantities = (0..8).step(2).map {|i| d.xpath("//div[@id='pnlInfoModule']//span[@id='lblInfoMsg'][1]")[i].text}
+		images = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-image']//img")[i]}
+		source = "CDW"
+
+		Search.new(names, prices, quantities, source)
 	end
 end
 
 
-
-# Every 3?
-# quantity = d.xpath("//div[@id='pnlInfoModule']//span")[0].text
-# quantity = d.xpath("//div[@id='pnlInfoModule']//span")[3].text
-# fails at
-# quantity = d.xpath("//div[@id='pnlInfoModule']//span")[15].text
 
 
 

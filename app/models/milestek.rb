@@ -7,24 +7,46 @@ class Milestek # Manufacturer primarily
 	include HTTParty
 	base_uri "http://www.milestek.com/cSearchs.aspx?Search="
 
-	def search product
-		resp = self.class.get "#{product}&CategoryID=0&ManufacturerID=0&SectionID=0&PriceRange=0&SortBy=5&PageSize=9&AndOr=AND&DisplayMode=Grid&x=0&y=0"
-		Nokogiri::HTML resp.body
+	def self.search product
+		resp = self.get "#{product}&CategoryID=0&ManufacturerID=0&SectionID=0&PriceRange=0&SortBy=5&PageSize=9&AndOr=AND&DisplayMode=Grid&x=0&y=0"
+		d = Nokogiri::HTML resp.body
+
+		names = []
+		1.upto(2) do |row|
+			1.upto(3) do |col|
+				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//b").text.strip
+				names.push(thing)
+				break if names.length >= 5
+			end
+		end
+
+		prices = []
+		1.upto(2) do |row|
+			1.upto(3) do |col|
+				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//strong")[1].text.delete("Price :")
+				prices.push(thing)
+				break if prices.length >= 5
+			end
+		end
+
+		# # Site makes the user click for quantity, but varying string prefixes
+		# # make it so that I can't grab quantities for different searches.
+		quantities = [] 
+		5.times do quantities.push("see http://www.milestek.com/")
+		end
+		
+		# Add "http://www.milestek.com/" + "" before
+		# images = []
+		# 1.upto(2) do |row|
+		# 	1.upto(3) do |col|
+		# 		thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//img")[0]
+		# 		names.push(thing)
+		# 		break if names.length >= 5
+		# 	end
+		source = "Milestek"
+		
+		Search.new(names, prices, quantities, source)
 	end
 end
 
-# site = Milestek.new
-# d = site.search "power cord".gsub(" ","+")
 
-# row = d.xpath("//table[@id='dlResultGrid']/tr[1]")
-# name = row.xpath("td[1]//b").text.strip
-
-# binding.pry
-
-
-# I tried some different things for price, but could not get
-# anything reasonable. For this reason, I think that grabbing 
-# from tables is more difficult.
-# 
-# price = d.xpath("//strong")[3].text.delete("Price: ")
-# price = d.xpath("//div[@id='dlResultGrid_ctl01_pnlPrice']").text.strip.delete("Price: ")

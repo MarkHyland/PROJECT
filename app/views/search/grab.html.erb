@@ -1,0 +1,7 @@
+<% Product.last(20).each do |product| %>
+  <%= product.name     %><br>
+  <%= product.price    %><br>
+  <%= product.quantity %><br>
+  <%= product.source   %><br>
+<% end %>
+
