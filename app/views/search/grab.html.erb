@@ -1,7 +1,22 @@
-<% Product.last(20).each do |product| %>
-  <%= product.name     %><br>
-  <%= product.price    %><br>
-  <%= product.quantity %><br>
-  <%= product.source   %><br>
+<table style="width:100%">
+<% @results.each do |product| %>
+  	<tr>
+	    <th>Name:</th>
+	    <td><%= product.name %></td>
+	</tr>
+	<tr>
+	    <th>Price:</th>
+	    <td>$<%= product.price %></td>
+	</tr>
+	<tr>
+	    <th>Qty.:</th>
+	    <td><%= product.quantity%></td>
+	</tr>
+	<tr>
+	    <th>Source:</th>
+	    <td><%= product.source  %></td>
+    </tr>	
 <% end %>
+</table>
 
+#green check glyph

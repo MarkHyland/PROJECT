@@ -16,7 +16,7 @@ class Search < ActiveRecord::Base
 			prices = @prices[n]
 			quantities = @quantities[n]
 			source = @source
-			Product.create!(name: names, price: prices.gsub(/[^\d^\.]/, '').to_f, quantity: quantities.to_i, source: source)
+			Product.new(name: names, price: prices.gsub("$",""), quantity: quantities, source: source)
 		}
 	end	
 end

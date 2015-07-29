@@ -8,8 +8,13 @@ class SearchController < ApplicationController
 		miles = Milestek.search params[:product].gsub(" ","+")
 		peer = PeerlessElectronics.search params[:product].gsub(" ","+")
 
-		# results = allie + cedewu + miles + peer
-		# results.sort_by {|p| p[2]}
+		res_a = allie.make_products
+		res_c = cedewu.make_products
+		res_m = miles.make_products
+		res_p = peer.make_products
+		
+		res = res_a.concat res_c.concat res_m.concat res_p  
+		@results = res.sort_by{|h| h[:price]}
 	end
 end
 

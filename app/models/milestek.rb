@@ -23,7 +23,7 @@ class Milestek # Manufacturer primarily
 		prices = []
 		1.upto(2) do |row|
 			1.upto(3) do |col|
-				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//strong")[1].text.delete("Price :")
+				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//strong")[1].text.delete("Price :") rescue nil
 				prices.push(thing)
 				break if prices.length >= 5
 			end
