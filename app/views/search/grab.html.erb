@@ -6,7 +6,11 @@
 	</tr>
 	<tr>
 	    <td class="descriptor">Price:</td>
-	    <td>$<%= "%.2f" % product.price %></td>
+	    <td><%if product.price == 0%>
+	    		Call <%=product.source%> for pricing
+	    	<%else %>
+	    	$<%= "%.2f" % product.price %>
+	    	<%end %></td>
 	</tr>
 	<tr>
 	    <td class="descriptor">Qty.:</td>
