@@ -16,12 +16,12 @@ class PeerlessElectronics # Reseller
 		resp = self.get "/search.php?search_query=#{product}"
 		d = Nokogiri::HTML resp.body
 
-		names = 0.upto(4).map {|i| d.xpath("//div[@class='ProductDetails']//a")[i].text}
-		qs = names.map {|name| PeerlessElectronics.search_quantity name.gsub("-","%252d").gsub(" ","-")}
-		##########
-		prices = qs.map {|q| @q.xpath("//em[@class='ProductPrice VariationProductPrice']").text}
-		quantities = qs.map {|q| @q.xpath("//span[@class='VariationProductInventory']").text.strip}
-		images = 0.upto(4).map {|i| d.xpath("//div[@class='ProductImage']")[i]}
+		names = 0.upto(4).map {|i| d.xpath("//div[@class='ProductDetails']//a")[i].text} rescue nil
+		qs = names.map {|name| PeerlessElectronics.search_quantity name.gsub("-","%252d").gsub(" ","-")} rescue nil
+		##
+		prices = qs.map {|q| q.xpath("//em[@class='ProductPrice VariationProductPrice']").text} rescue nil
+		quantities = qs.map {|q| q.xpath("//span[@class='VariationProductInventory']").text.strip} rescue nil
+		images = 0.upto(4).map {|i| d.xpath("//div[@class='ProductImage']")[i]} rescue nil
 		source = "PeerlessElectronics"
 
 		Search.new(names, prices, quantities, source)

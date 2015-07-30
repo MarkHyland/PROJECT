@@ -11,12 +11,16 @@ class Search < ActiveRecord::Base
 	end
 
 	def make_products
-		0.upto(4).map{ |n|
-			names = @names[n]
-			prices = @prices[n]
-			quantities = @quantities[n]
-			source = @source
-			Product.new(name: names, price: prices.gsub("$",""), quantity: quantities, source: source)
-		}
+		if @names == nil || @prices == nil || @quantities == nil
+			return []
+		else
+			0.upto(4).map{ |n|
+				names = @names[n]
+				prices = @prices[n]
+				quantities = @quantities[n]
+				source = @source
+				Product.new(name: names, price: prices.gsub("$",""), quantity: quantities, source: source)
+			}
+		end
 	end	
 end

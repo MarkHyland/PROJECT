@@ -12,10 +12,10 @@ class CDW # Huge Reseller
 		resp = self.get "#{product}&wclsscat=&b=&p=&ctlgfilter=&searchscope=all&sr=1&pfm=gln"
 		d = Nokogiri::HTML resp.body
 
-		names = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-description']//a")[i].text}
-		prices = 0.upto(4).map {|i| d.xpath("//div[@class='ui-priceselector']//span[1]")[i].text}
-		quantities = (0..8).step(2).map {|i| d.xpath("//div[@id='pnlInfoModule']//span[@id='lblInfoMsg'][1]")[i].text}
-		images = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-image']//img")[i]}
+		names = 0.upto(4).map {|i| d.xpath("//a[@id='hprProductLink']")[i].text} rescue nil
+		prices = 0.upto(4).map {|i| d.xpath("//div[@class='ui-priceselector']//span[1]")[i].text} rescue nil
+		quantities = (0..8).step(2).map {|i| d.xpath("//div[@id='pnlInfoModule']//span[@id='lblInfoMsg'][1]")[i].text} rescue nil
+		images = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-image']//img")[i]} rescue nil
 		source = "CDW"
 
 		Search.new(names, prices, quantities, source)

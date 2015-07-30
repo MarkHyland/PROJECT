@@ -29,6 +29,11 @@ class Milestek # Manufacturer primarily
 			end
 		end
 
+		if prices.include?(nil)
+			prices = nil
+		else
+		end
+
 		# # Site makes the user click for quantity, but varying string prefixes
 		# # make it so that I can't grab quantities for different searches.
 		quantities = [] 

@@ -1,22 +1,23 @@
-<table style="width:100%">
+<table class="product-table" style="width:100%">
 <% @results.each do |product| %>
   	<tr>
-	    <th>Name:</th>
+	    <td class="descriptor">Name:</td>
 	    <td><%= product.name %></td>
 	</tr>
 	<tr>
-	    <th>Price:</th>
-	    <td>$<%= product.price %></td>
+	    <td class="descriptor">Price:</td>
+	    <td>$<%= "%.2f" % product.price %></td>
 	</tr>
 	<tr>
-	    <th>Qty.:</th>
-	    <td><%= product.quantity%></td>
+	    <td class="descriptor">Qty.:</td>
+	    <td><%= product.quantity %></td>
 	</tr>
-	<tr>
-	    <th>Source:</th>
+	<tr class="source">
+	    <td class="descriptor">Source:</td>
 	    <td><%= product.source  %></td>
     </tr>	
 <% end %>
 </table>
 
-#green check glyph
+No more results for "<%= params[:product] %>"
+<a class="button" href="/">back</a>

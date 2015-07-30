@@ -1,0 +1,48 @@
+td.descriptor{
+	font-weight: bold;
+	vertical-align: top;
+}
+
+.product-table td {
+	padding: 5px;
+	font-size: 18px;
+}
+
+tr.source{border-bottom: solid 1px black;}
+
+.input-append {
+	background: url("/BAMS_B1.jpg");
+	background-size: cover;
+	height: 400px;
+	position: relative;
+}
+
+.input-stuff {
+	position: relative;
+	top: 10%;
+	transform: translateY(-50%);
+	text-align: center;
+}
+
+.product-search {
+	font-size: 20px;
+	width: 50%;
+	vertical-align: top;
+}
+
+.input-stuff button {
+	vertical-align: top;
+}
+
+.navbar>.container .navbar-brand.title {
+	margin-left: 0px;
+}
+
+.button, .button:hover {
+	padding: 6px 10px;
+	border: solid 1px black;
+	background: rgb(155, 155, 155);
+	color: white;
+	text-decoration: none;
+
+}
