@@ -1,4 +1,6 @@
 <table class="product-table" style="width:100%">
+results for "<%= params[:product] %>" 
+<%= @time %> seconds
 <% @results.each do |product| %>
   	<tr>
 	    <td class="descriptor">Name:</td>
@@ -22,6 +24,6 @@
     </tr>	
 <% end %>
 </table>
-
+<br>
 No more results for "<%= params[:product] %>"
 <a class="button" href="/">back</a>

@@ -3,10 +3,10 @@ class Product < ActiveRecord::Base
 
 	# def in_stock?
 	# 	super
- #  	if quantity.downcase.include?(“in stock”) || quantity.to_i > 0
- #    		return true
- #  	else
- #    		return false
- #  	end
+ 	#  	if quantity.downcase.include?(“in stock”) || quantity.to_i > 0
+ 	#    	return true
+ 	#  	else
+ 	#    	return false
+ 	#  	end
 	# end
 end
