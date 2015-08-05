@@ -39,13 +39,7 @@ class Milestek # Manufacturer primarily
 		else
 		end
 
-		# # Site makes the user click for quantity, but varying string prefixes
-		# # make it so that I can't grab quantities for different searches.
-		# # USE THE LINK
-		# quantities = [] 
-		# 5.times do quantities.push("see http://www.milestek.com/")
-		# end
-
+		# Grab the link for the quantity
 		site_end = []
 		1.upto(2) do |row|
 			1.upto(3) do |col|
@@ -60,13 +54,16 @@ class Milestek # Manufacturer primarily
 
 		
 		# Add "http://www.milestek.com/" + "" before
-		# images = []
-		# 1.upto(2) do |row|
-		# 	1.upto(3) do |col|
-		# 		thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//img")[0]
-		# 		names.push(thing)
-		# 		break if names.length >= 5
-		# 	end
+		images = []
+		1.upto(2) do |row|
+			1.upto(3) do |col|
+				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//img").map{|link| link['src']}[0]
+				final = "http://www.milestek.com/" + thing
+				images.push(final)
+				break if images.length >= 5
+			end
+		end
+		
 		source = "Milestek"
 		# site_beg = "http://www.milestek.com/cSearchs.aspx?Search="
 		# site_end = "&CategoryID=0&ManufacturerID=0&SectionID=0&PriceRange=0&SortBy=5&PageSize=9&AndOr=AND&DisplayMode=Grid&x=0&y=0"
@@ -74,7 +71,7 @@ class Milestek # Manufacturer primarily
 		
 		
 		
-		Search.new(names, prices, quantities, source, site_beg, site_end)
+		Search.new(names, prices, quantities, source, images, site_beg, site_end)
 	end
 end
 

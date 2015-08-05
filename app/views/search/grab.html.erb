@@ -19,10 +19,15 @@ results for "<%= params[:product] %>"
 	    <td class="descriptor">Qty.:</td>
 	    <td><%= product.quantity %></td>
 	</tr>
+	<tr>
+    	<td class="descriptor">Image:</td>
+    	<td><img src="<%= product.image %>"></img></td>
+    </tr>
 	<tr class="source">
 	    <td class="descriptor">Source:</td>
-	    <td><%= product.source  %></td>
-    </tr>	
+	    <td><%= product.source %></td>
+    </tr>
+ 	
 <% end %>
 </table>
 <br>

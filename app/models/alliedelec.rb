@@ -27,7 +27,9 @@ class Alliedelec
 				end
 			end
 			quantities = rows.map {|row| row.xpath("td[5]//b").text.strip} 
-			images = rows.map {|row| row.xpath("td[2]//img")}
+			start = "http://www.alliedelec.com"
+			images = rows.map {|row| start + row.xpath("td[2]//img").map{|link| link['src']}[0]}
+			
 			site_end = rows.map {|row| row.xpath("td[3]//a").map{|link| link['href']}[0]}
 		end
 	
@@ -36,6 +38,6 @@ class Alliedelec
 		# site_end = "/"
 		site_beg = "http://www.alliedelec.com"
 		
-		Search.new(names, prices, quantities, source, site_beg, site_end)
+		Search.new(names, prices, quantities, source, images, site_beg, site_end)
 	end
 end

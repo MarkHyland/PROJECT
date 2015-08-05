@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
 	validates_presence_of :name, :price, :quantity
+	# image?
 
 	def in_stock?
  	 	if quantity.to_i > 0  
