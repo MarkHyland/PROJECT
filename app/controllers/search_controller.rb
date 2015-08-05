@@ -34,7 +34,9 @@ class SearchController < ApplicationController
 		middle4 = Time.now
 
 		res = res_a.concat res_c.concat res_m.concat res_p  
-		@results = res.sort_by{|h| h[:price]}
+		present,absent = res.partition{|v| v.in_stock? }
+
+		@results = present.sort_by{|h| h[:price]} + absent.sort_by{|h| h[:price]}
 
 		stop = Time.now
 		@time = stop - start
