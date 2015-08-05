@@ -48,9 +48,11 @@ class Milestek # Manufacturer primarily
 		# 		names.push(thing)
 		# 		break if names.length >= 5
 		# 	end
-		source = "Milestek"
+		source = "milestek"
+		site_beg = "http://www.milestek.com/cSearchs.aspx?Search="
+		site_end = "/"
 		
-		Search.new(names, prices, quantities, source)
+		Search.new(names, prices, quantities, source, site_beg, site_end)
 	end
 end
 

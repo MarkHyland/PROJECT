@@ -16,9 +16,11 @@ class CDW # Huge Reseller
 		prices = 0.upto(4).map {|i| d.xpath("//div[@class='ui-priceselector']//span[1]")[i].text} rescue nil
 		quantities = (0..8).step(2).map {|i| d.xpath("//div[@id='pnlInfoModule']//span[@id='lblInfoMsg'][1]")[i].text} rescue nil
 		images = 0.upto(4).map {|i| d.xpath("//div[@class='searchrow-image']//img")[i]} rescue nil
-		source = "CDW"
+		source = "cdw"
+		site_beg = "http://www.cdw.com/shop/search/result.aspx?key="
+		site_end = "&wclsscat=&b=&p=&ctlgfilter=&searchscope=all&sr=1&pfm=gln"
 
-		Search.new(names, prices, quantities, source)
+		Search.new(names, prices, quantities, source, site_beg, site_end)
 	end
 end
 

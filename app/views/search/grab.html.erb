@@ -1,10 +1,12 @@
 <table class="product-table" style="width:100%">
+
 results for "<%= params[:product] %>" 
 <%= @time %> seconds
 <% @results.each do |product| %>
   	<tr>
 	    <td class="descriptor">Name:</td>
 	    <td><%= product.name %></td>
+	    <td><a href="<%=product.site_beg%><%=params[:product]%><%=product.site_end%>">link_to_item</a></td>
 	</tr>
 	<tr>
 	    <td class="descriptor">Price:</td>

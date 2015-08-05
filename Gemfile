@@ -16,6 +16,7 @@ gem 'devise'
 gem 'nokogiri'
 gem 'httparty'
 gem 'json'
+#gem 'ruby-prof' for app run time stats
 
 group :development, :test do
   gem 'byebug'

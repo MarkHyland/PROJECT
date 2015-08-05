@@ -22,9 +22,11 @@ class PeerlessElectronics # Reseller
 		prices = qs.map {|q| q.xpath("//em[@class='ProductPrice VariationProductPrice']").text} rescue nil
 		quantities = qs.map {|q| q.xpath("//span[@class='VariationProductInventory']").text.strip} rescue nil
 		images = 0.upto(4).map {|i| d.xpath("//div[@class='ProductImage']")[i]} rescue nil
-		source = "PeerlessElectronics"
+		source = "peerlesselectronics"
+		site_beg = "http://www.peerlesselectronics.com/store/search.php?search_query="
+		site_end = "/"
 
-		Search.new(names, prices, quantities, source)
+		Search.new(names, prices, quantities, source, site_beg, site_end)
 	end
 end
 

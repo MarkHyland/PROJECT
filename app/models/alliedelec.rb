@@ -29,8 +29,11 @@ class Alliedelec
 			quantities = rows.map {|row| row.xpath("td[5]//b").text.strip} 
 			images = rows.map {|row| row.xpath("td[2]//img")}
 		end
-		source = "Alliedelec"
+	
+		source = "alliedelec"
+		site_beg = "http://www.alliedelec.com/search/results.aspx?term="
+		site_end = "/"
 		
-		Search.new(names, prices, quantities, source)
+		Search.new(names, prices, quantities, source, site_beg, site_end)
 	end
 end
