@@ -50,7 +50,7 @@ class Milestek # Manufacturer primarily
 		# 	end
 		source = "milestek"
 		site_beg = "http://www.milestek.com/cSearchs.aspx?Search="
-		site_end = "/"
+		site_end = "&CategoryID=0&ManufacturerID=0&SectionID=0&PriceRange=0&SortBy=5&PageSize=9&AndOr=AND&DisplayMode=Grid&x=0&y=0"
 		
 		Search.new(names, prices, quantities, source, site_beg, site_end)
 	end
