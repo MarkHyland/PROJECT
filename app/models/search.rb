@@ -22,7 +22,7 @@ class Search < ActiveRecord::Base
 				quantities = @quantities[n]
 				source = @source
 				site_beg = @site_beg
-				site_end = @site_end
+				site_end = @site_end[n]
 				Product.new(name: names, price: prices.gsub("$",""), quantity: quantities, source: source, site_beg: site_beg, site_end: site_end)
 			}
 		end
