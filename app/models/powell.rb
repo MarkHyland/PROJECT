@@ -19,7 +19,6 @@
 # site = Powell.new
 # d = site.search "OA109AN-11-2TB".gsub(" ","%20")
 
-# binding.pry
 
 # name = d.xpath("//table[@id='Table5']/tr[4]//span")[6].text
 # price = d.xpath("//table[@id='Table5']/tr[4]//td[6]/table/tr[1]/td[2]")[0].text
