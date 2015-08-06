@@ -1,6 +1,6 @@
 require 'open-uri'
-require 'HTTParty'
-require 'Nokogiri'
+require 'httparty'
+require 'nokogiri'
 require 'pry'
 
 class Dell

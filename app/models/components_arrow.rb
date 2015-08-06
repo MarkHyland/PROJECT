@@ -1,7 +1,7 @@
 # require 'pry'
 # require 'nokogiri'
 # require 'open-uri'
-# require 'HTTParty'
+# require 'httparty'
 
 # class ComponentsArrow # (Arrow) Huge Reseller 
 # 	include HTTParty

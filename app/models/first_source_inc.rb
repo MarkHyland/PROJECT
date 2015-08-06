@@ -1,7 +1,7 @@
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
-require 'HTTParty'
+require 'httparty'
 
 class FirstSourceInc # Small Reseller (12 manufacturers)
 	include HTTParty
