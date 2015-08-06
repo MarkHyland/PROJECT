@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-	validates_presence_of :name, :price, :quantity
+	validates_presence_of :name, :price, :quantity, :image
 	# image?
 
 	def in_stock?

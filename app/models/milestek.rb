@@ -57,11 +57,20 @@ class Milestek # Manufacturer primarily
 		images = []
 		1.upto(2) do |row|
 			1.upto(3) do |col|
-				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//img").map{|link| link['src']}[0]
-				final = "http://www.milestek.com/" + thing
+				thing = d.xpath("//table[@id='dlResultGrid']/tr[#{row}]/td[#{col}]//img").map{|link| link['src']}[0] rescue nil
+				if thing != nil
+					final = "http://www.milestek.com/" + thing
+				else
+					final = nil
+				end 
 				images.push(final)
 				break if images.length >= 5
 			end
+		end
+
+		if images.include?(nil)
+			images = nil
+		else
 		end
 		
 		source = "Milestek"

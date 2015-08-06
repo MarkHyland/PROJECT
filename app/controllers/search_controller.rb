@@ -7,16 +7,16 @@ class SearchController < ApplicationController
 		
 		res_a, res_c, res_m, res_p = [],[],[],[]
 		t1 = Thread.new do
-			miles = Milestek.search params[:product].gsub(" ","+")
-			res_m = miles.make_products
+			allie = Alliedelec.search params[:product].gsub(" ","+")
+			res_a = allie.make_products
 			end
 		t2 = Thread.new do
 			cedewu = CDW.search params[:product].gsub(" ","%20")
 			res_c = cedewu.make_products
 			end
 		t3 = Thread.new do 
-			allie = Alliedelec.search params[:product].gsub(" ","+")
-			res_a = allie.make_products
+			miles = Milestek.search params[:product].gsub(" ","+")
+			res_m = miles.make_products
 			end
 		t4 = Thread.new do
 			peer = PeerlessElectronics.search params[:product].gsub(" ","+")
@@ -36,13 +36,13 @@ class SearchController < ApplicationController
 		res = res_a.concat res_c.concat res_m.concat res_p  
 		present,absent = res.partition{|v| v.in_stock? }
 
-		@results = present.sort_by{|h| h[:price]} + absent.sort_by{|h| h[:price]}
+		@results = present.sort_by{|h| h.price || 0} + absent.sort_by{|h| h.price || 0}
 
 		stop = Time.now
 		@time = stop - start
-		@mile = middle1 - middle0
+		@alli = middle1 - middle0
 		@cedew = middle2 - middle1
-		@alli = middle3 - middle2
+		@mile = middle3 - middle2
 		@pee = middle4 - middle3
 	end
 end

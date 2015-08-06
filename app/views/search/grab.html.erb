@@ -12,7 +12,9 @@
 						</tr>
 						<tr>
 							  <td class="descriptor">Price:</td>
-							  <td><%if product.price != 0%>
+							  <td><%if product.price == nil%>
+							  			<%= "May be discontinued." %>
+							  		<%elsif product.price != 0 %>
 							  		  $<%= "%.2f" % product.price %>
 							    	<%else %>
 							    		Call <%=product.source%> for pricing
@@ -20,11 +22,16 @@
 						</tr>
 						<tr>
 							  <td class="descriptor">Qty.:</td>
-							  <td><%= product.quantity %></td>
+							  <td <%if product.in_stock? %>
+							  		class="in-stock"
+							  		<%else %>
+							  		class="out-of-stock"
+							  		<%end %>>
+							  		<%= product.quantity %></td>
 						</tr>
 						<tr>
 							  <td class="descriptor">Source:</td>
-							  <td>&nbsp<%= product.source %></td>
+							  <td><%= product.source %></td>
 						 </tr>
 					</td>
 

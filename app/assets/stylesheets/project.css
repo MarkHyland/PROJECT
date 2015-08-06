@@ -10,6 +10,14 @@ td.descriptor{
 
 tr.source{border-bottom: solid 1px black;}
 
+.in-stock {
+	color: green;
+}
+
+.out-of-stock {
+	color: red;
+}
+
 .input-append {
 	background: url("/BAMS_B1.jpg");
 	background-size: cover;
