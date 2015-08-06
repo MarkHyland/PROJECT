@@ -1,34 +1,43 @@
 <table class="product-table" style="width:100%">
 
-results for "<%= params[:product] %>" 
-<%= @time %> seconds
-<% @results.each do |product| %>
-  	<tr>
-	    <td class="descriptor" >Name:</td>
-	    <td><a href="<%=product.site_beg%><%=product.site_end%>"> <%= product.name %></a></td>
-	</tr>
-	<tr>
-	    <td class="descriptor">Price:</td>
-	    <td><%if product.price == 0%>
-	    		Call <%=product.source%> for pricing
-	    	<%else %>
-	    	$<%= "%.2f" % product.price %>
-	    	<%end %></td>
-	</tr>
-	<tr>
-	    <td class="descriptor">Qty.:</td>
-	    <td><%= product.quantity %></td>
-	</tr>
-	<tr>
-    	<td class="descriptor">Image:</td>
-    	<td><img src="<%= product.image %>"></img></td>
-    </tr>
-	<tr class="source">
-	    <td class="descriptor">Source:</td>
-	    <td><%= product.source %></td>
-    </tr>
- 	
-<% end %>
+		results for "<%= params[:product] %>" 
+		<%= @time %> seconds
+		<% @results.each do |product| %>
+		<table>
+			  <tr>
+			  	<td>
+			  		<tr>
+							  <td class="descriptor" >Name:</td>
+							  <td><a href="<%=product.site_beg%><%=product.site_end%>"><%= product.name %></a></td>
+						</tr>
+						<tr>
+							  <td class="descriptor">Price:</td>
+							  <td><%if product.price != 0%>
+							  		  $<%= "%.2f" % product.price %>
+							    	<%else %>
+							    		Call <%=product.source%> for pricing
+							    	<% end %></td>
+						</tr>
+						<tr>
+							  <td class="descriptor">Qty.:</td>
+							  <td><%= product.quantity %></td>
+						</tr>
+						<tr>
+							  <td class="descriptor">Source:</td>
+							  <td>&nbsp<%= product.source %></td>
+						 </tr>
+					</td>
+
+			  	<td>
+			  			<tr class ="source">
+								<td class="descriptor">Image:</td>
+			  				<td><img src="<%= product.image %>"></img></td>
+							</tr>
+					</td>
+			  </tr>
+		</table>
+		<% end %>
+
 </table>
 <br>
 No more results for "<%= params[:product] %>"
