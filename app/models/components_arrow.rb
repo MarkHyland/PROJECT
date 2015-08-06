@@ -16,8 +16,6 @@
 # site = ComponentsArrow.new
 # d = site.search "connector".gsub(" ","%20")
 
-# binding.pry
-
 # row = d.xpath("//table[@id='results-table']//tr")
 
 # # Why isn't it grabbing the table?
